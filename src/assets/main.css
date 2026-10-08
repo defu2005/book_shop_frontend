@@ -1,0 +1,306 @@
+:root {
+  --ink: #333333;
+  --muted: #777777;
+  --paper: #f4f4f4;
+  --card: #ffffff;
+  --teal: #2aa4c5;
+  --teal-dark: #1f8eac;
+  --teal-deep: #1a7c97;
+  --sale: #e53935;
+  --line: #e6e6e6;
+  --ok: #2f6b4f;
+  --danger: #c62828;
+  --header: #ffffff;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: 'Roboto', 'Segoe UI', system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 500;
+  color: #222;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 4px;
+  padding: 10px 16px;
+  cursor: pointer;
+  background: var(--teal);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background 0.15s ease;
+}
+
+.btn:hover {
+  background: var(--teal-dark);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--teal-deep);
+  border: 1px solid var(--line);
+}
+
+.btn.danger {
+  background: var(--danger);
+}
+
+.btn.small {
+  padding: 7px 12px;
+  font-size: 0.9rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field span {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.field input,
+.field select,
+.field textarea {
+  border: 1px solid #d9d9d9;
+  background: #fff;
+  border-radius: 4px;
+  padding: 11px 12px;
+  outline: none;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(42, 164, 197, 0.15);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+}
+
+.alert {
+  border-radius: 4px;
+  padding: 10px 12px;
+  background: #fdecea;
+  color: var(--danger);
+}
+
+.alert.ok {
+  background: #e4f3ea;
+  color: var(--ok);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  gap: 18px;
+}
+
+.page {
+  padding: 20px 0 72px;
+}
+
+.container {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.badge {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #eef7fa;
+  color: var(--teal-deep);
+  font-size: 0.82rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+th {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.price-sale {
+  color: var(--sale);
+  font-weight: 700;
+}
+
+.price-old {
+  color: #b0b0b0;
+  text-decoration: line-through;
+  font-size: 0.9rem;
+  margin-left: 6px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.stat {
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 16px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 1.6rem;
+  color: var(--teal-deep);
+}
+
+.pager {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 16px 0 0;
+}
+
+.pager button {
+  min-width: 36px;
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.pager button.on {
+  background: var(--teal);
+  color: #fff;
+  border-color: var(--teal);
+}
+
+.account-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.account-nav {
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.account-nav a {
+  display: block;
+  padding: 12px 14px;
+  border-top: 1px solid var(--line);
+}
+
+.account-nav a:first-child {
+  border-top: 0;
+}
+
+.account-nav a.router-link-active {
+  color: var(--teal-deep);
+  background: #f3fbfd;
+  font-weight: 600;
+}
+
+.timeline {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 12px 0 20px;
+}
+
+.timeline span {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #eee;
+  font-size: 0.82rem;
+}
+
+.timeline span.on {
+  background: var(--teal);
+  color: #fff;
+}
+
+.timeline span.done {
+  background: #cde8f0;
+  color: var(--teal-deep);
+}
+
+@media (max-width: 800px) {
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
+}
