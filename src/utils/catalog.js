@@ -26,10 +26,10 @@ export function applyCatalogFilters(books, { categoryId, minPrice, maxPrice, sor
   if (Number.isFinite(min) && min > 0) list = list.filter((book) => Number(book.price) >= min)
   if (Number.isFinite(max) && max > 0) list = list.filter((book) => Number(book.price) <= max)
 
-  if (sort === 'price-asc') list.sort((a, b) => Number(a.price) - Number(b.price))
-  else if (sort === 'price-desc') list.sort((a, b) => Number(b.price) - Number(a.price))
-  else if (sort === 'newest') list.sort((a, b) => Number(b.id) - Number(a.id))
-  else if (sort === 'oldest') list.sort((a, b) => Number(a.id) - Number(b.id))
+  if (sort === 'PRICE_ASC') list.sort((a, b) => Number(a.price) - Number(b.price))
+  else if (sort === 'PRICE_DESC') list.sort((a, b) => Number(b.price) - Number(a.price))
+  else if (sort === 'LATEST') list.sort((a, b) => Number(b.id) - Number(a.id))
+  else if (sort === 'OLDEST') list.sort((a, b) => Number(a.id) - Number(b.id))
   return list
 }
 

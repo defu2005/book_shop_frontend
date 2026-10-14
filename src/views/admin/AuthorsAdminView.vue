@@ -62,6 +62,7 @@ async function restore() {
   notice.value = (await restoreAuthor(restoreId.value)).message
   restoreId.value = ''
   await load()
+  console.log('restore', notice.value)
 }
 
 onMounted(load)

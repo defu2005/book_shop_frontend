@@ -1,7 +1,39 @@
 import { api, unwrap } from './client'
 
-export async function getBooks() {
-  return unwrap(await api('/api/books')) || []
+export async function getBooksPage(filters = {}) {
+  const params = new URLSearchParams()
+
+  for (const [key, value] of Object.entries(filters)) {
+    if (value === '' || value === null || value === undefined) continue
+    if (['categoryId', 'authorId', 'minPrice', 'maxPrice'].includes(key) && Number(value) === 0) continue
+    params.set(key, String(value))
+  }
+
+  const query = params.toString()
+  const result = unwrap(await api(`/api/books${query ? `?${query}` : ''}`))
+
+  if (Array.isArray(result)) {
+    return {
+      content: result,
+      number: 0,
+      size: result.length,
+      totalElements: result.length,
+      totalPages: result.length ? 1 : 0,
+    }
+  }
+
+  const content = Array.isArray(result?.content) ? result.content : []
+  return {
+    content,
+    number: Number(result?.number) || 0,
+    size: Number(result?.size) || content.length,
+    totalElements: Number(result?.totalElements) || 0,
+    totalPages: Number(result?.totalPages) || 0,
+  }
+}
+
+export async function getBooks(filters = {}) {
+  return (await getBooksPage(filters)).content
 }
 
 export async function getBook(id) {

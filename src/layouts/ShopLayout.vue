@@ -42,10 +42,21 @@ function search() {
   router.push({
     path: '/',
     query: {
+      ...route.query,
       ...(q ? { q } : {}),
-      ...(route.query.category ? { category: route.query.category } : {}),
     },
   })
+}
+
+function categoryRoute(id) {
+  const { category, ...query } = route.query
+  return {
+    path: '/',
+    query: {
+      ...query,
+      ...(id ? { category: String(id) } : {}),
+    },
+  }
 }
 
 function logout() {
@@ -93,7 +104,6 @@ function logout() {
         <RouterLink to="/cart">GIỎ HÀNG</RouterLink>
         <RouterLink to="/orders">ĐƠN HÀNG</RouterLink>
         <RouterLink to="/checkout">THANH TOÁN</RouterLink>
-        <RouterLink v-if="auth.isAdmin" to="/admin">QUẢN TRỊ</RouterLink>
         <a href="#about">ABOUT US</a>
       </div>
     </nav>
@@ -104,13 +114,13 @@ function logout() {
           <h2>DANH MỤC SÁCH</h2>
           <ul>
             <li>
-              <RouterLink to="/" active-class="" exact-active-class="" :class="{ active: !activeCategory }">
+              <RouterLink :to="categoryRoute(0)" active-class="" exact-active-class="" :class="{ active: !activeCategory }">
                 Tất cả sách
               </RouterLink>
             </li>
             <li v-for="cat in categories" :key="cat.id">
               <RouterLink
-                :to="{ path: '/', query: { category: cat.id } }"
+                :to="categoryRoute(cat.id)"
                 active-class=""
                 exact-active-class=""
                 :class="{ active: activeCategory === String(cat.id) }"
@@ -142,6 +152,10 @@ function logout() {
 </template>
 
 <style scoped>
+.container {
+  width: min(1440px, calc(100% - 24px));
+  margin: 0 auto;
+}
 .utility {
   background: var(--teal);
   color: #fff;
